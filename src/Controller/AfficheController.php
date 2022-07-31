@@ -18,8 +18,9 @@ class AfficheController extends AbstractController
     public function index(EntityManagerInterface $manager): Response
     {
         
-        $gare = $gar = $manager->getRepository(Gare::class)->findAll();
-        $gareListe = $gar = $manager->getRepository(Gare::class)->findAllGare();
+        $gare = $manager->getRepository(Gare::class)->findAll();
+        $gar = $manager->getRepository(Gare::class)->findAll();
+        $gareListe = $gar = $manager->getRepository(Gare::class)->findAllGare(); 
 
         if(empty($_POST["filtre"])){
             return $this->render('affiche/index.html.twig',[
@@ -28,10 +29,11 @@ class AfficheController extends AbstractController
                 "gareListe"=>$gareListe,
             ]);
         }else{
-            $gare = $manager->getRepository(Gare::class)->findBy(["resCom"=>$_POST["filtre"]]);
+            $gare1 = $manager->getRepository(Gare::class)->findBy(["resCom"=>$_POST["filtre"]]);
+            //dd($gare1);
             return $this->render('affiche/index.html.twig',[
-                "gares"=>$gare,
-                "gare1"=>$gar,
+                "gares"=>$gare1,
+                "gare1"=>$gare,
                 "gareListe"=>$gareListe,
             ]);
         }

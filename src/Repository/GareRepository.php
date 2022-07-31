@@ -49,11 +49,20 @@ class GareRepository extends ServiceEntityRepository
         $qb->select('distinct u.resCom')
             ->from($this->_entityName, 'u');
                         
-        return $qb->getQuery()->getResult();
-        
+        return $qb->getQuery()->getResult();  
+    }
 
-                            
-        
+     /**
+     *
+     * @return array
+     */
+    public function findAllNomGare()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('distinct u.nomGare')
+            ->from($this->_entityName, 'u');
+                        
+        return $qb->getQuery()->getResult();  
     }
 
 //    /**

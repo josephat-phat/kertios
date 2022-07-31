@@ -9,7 +9,7 @@
             <select type="text" class="form-control" name="filtre" />
                 <option></option>
                 {% for garenom in gareListe %}
-                <option>{{ garenom.resCom }}</option>
+                <option value="{{ garenom.resCom }}">{{ garenom.resCom }}</option>
                 {% endfor %}
             </select>
             <button class="btn btn-primary" id="advanced-search-button" type="submit">chercher
