@@ -8,7 +8,7 @@
         <form method="post" action="{{ path("app_affiche") }}">
             <select type="text" class="form-control" name="filtre" />
                 <option></option>
-                {% for garenom in gare1 %}
+                {% for garenom in gareListe %}
                 <option>{{ garenom.resCom }}</option>
                 {% endfor %}
             </select>

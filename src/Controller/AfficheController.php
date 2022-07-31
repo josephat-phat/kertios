@@ -19,16 +19,20 @@ class AfficheController extends AbstractController
     {
         
         $gare = $gar = $manager->getRepository(Gare::class)->findAll();
+        $gareListe = $gar = $manager->getRepository(Gare::class)->findAllGare();
+
         if(empty($_POST["filtre"])){
             return $this->render('affiche/index.html.twig',[
                 "gares"=>$gare,
                 "gare1"=>$gare,
+                "gareListe"=>$gareListe,
             ]);
         }else{
             $gare = $manager->getRepository(Gare::class)->findBy(["resCom"=>$_POST["filtre"]]);
             return $this->render('affiche/index.html.twig',[
                 "gares"=>$gare,
                 "gare1"=>$gar,
+                "gareListe"=>$gareListe,
             ]);
         }
     }

@@ -43,7 +43,7 @@ class GareRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function findAllGage()
+    public function findAllGare()
     {
         $qb = $this->_em->createQueryBuilder();
         $qb->select('distinct u.resCom')
