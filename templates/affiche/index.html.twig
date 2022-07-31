@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AfficheController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="input-group mb-4" >
+        <form method="post" action="{{ path("app_affiche") }}">
+            <select type="text" class="form-control" name="filtre" />
+                <option></option>
+                {% for garenom in gare1 %}
+                <option>{{ garenom.resCom }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" id="advanced-search-button" type="submit">chercher
+            </button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 mx-auto">
+            <table class="table" >
+            <thead>
+                <tr>
+                <th scope="col">Gare</th>
+                <th scope="col">Ligne N°</th>
+                <th scope="col"></th>
+                <th scope="col">Correspondance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for gare in gares %}
+                <tr>
+                    <th scope="row">{{ gare.nomGare }}</th>
+                    <td>{{ gare.resCom }}</td>
+                    <td>
+                        {% if gare.resCom == gare.termetro %}
+                            Terminus. 
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% set coredp = []  %}
+                        {% for gar in gare1 %}
+                            {% if gare.nomGare == gar.nomGare  %}
+                                {% set coredp = coredp|merge([gar.resCom]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for val in coredp %}
+                        {% if val == gare.resCom %}
+                        {% else %}
+                            {{ val }},
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
